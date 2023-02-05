@@ -8,6 +8,8 @@ const project = new typescript.TypeScriptProject({
   docgen: true,
   prettier: true,
 
+  deps: ["puppeteer-core", "@sparticuz/chromium"],
+
   release: true,
   defaultReleaseBranch: "main",
   releaseToNpm: true,
