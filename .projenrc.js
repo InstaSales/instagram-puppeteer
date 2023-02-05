@@ -1,11 +1,27 @@
-const { typescript } = require('projen');
-const project = new typescript.TypeScriptProject({
-  defaultReleaseBranch: 'main',
-  name: 'instagram-puppeteer',
+const { typescript } = require("projen");
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+const project = new typescript.TypeScriptProject({
+  name: "instagram-puppeteer",
+  description: "Instagram API SDK for Node.js",
+  homepage: "https://github.com/InstaSales/instagram-puppeteer",
+
+  docgen: true,
+  prettier: true,
+
+  release: true,
+  defaultReleaseBranch: "main",
+  releaseToNpm: true,
+
+  minNodeVersion: "14.18.0",
+  workflowNodeVersion: "18",
+
+  autoMerge: true,
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ["dependabot[bot]", "edelwud"],
+  },
 });
+
+project.npmignore.exclude("/docs/");
+
 project.synth();
