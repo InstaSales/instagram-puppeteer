@@ -1,6 +1,10 @@
 {
   "name": "instagram-puppeteer",
   "description": "Instagram API SDK for Node.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/InstaSales/instagram-puppeteer.git"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
@@ -50,12 +54,18 @@
     "tslog": "*",
     "user-agents": "^1.0.1282"
   },
+  "keywords": [
+    "api",
+    "instagram",
+    "puppeteer",
+    "sdk"
+  ],
   "engines": {
     "node": ">= 14.18.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/InstaSales/instagram-puppeteer",
+  "homepage": "https://instasales.github.io/instagram-puppeteer/",
   "version": "0.0.0",
   "jest": {
     "testTimeout": 60000,

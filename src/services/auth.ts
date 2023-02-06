@@ -19,6 +19,7 @@ export class AuthService {
   }
 
   public async login() {
+    logger.info("Logging in...");
     return InstagramState.getInstance()
       .setCurrentPage(
         new LoginPage({
@@ -33,90 +34,6 @@ export class AuthService {
       )
       .then((page) => page.clickLogin())
       .then(() => InstagramBrowser.getInstance())
-      .then((browser) => sleep(browser, 5000))
-      .then((browser) =>
-        browser.saveScreenshot("./screenshot-after-login.png")
-      );
+      .then((browser) => sleep(browser, 5000));
   }
-
-  public async login2() {
-    return InstagramBrowser.getInstance()
-      .then((browser) => sleep(browser, 3000))
-      .then((browser) => this.clickAllowCookies(browser))
-      .then((browser) =>
-        browser.saveScreenshot("./screenshot-after-cookies.png")
-      )
-
-      .then((browser) =>
-        this.click(browser, '//button[contains(text(), "Log In")]')
-      )
-
-      .then((browser) =>
-        browser.page
-          .type('input[name="username"]', this.options.username, {
-            delay: 50,
-          })
-          .then(() => browser)
-      )
-      .then((browser) => sleep(browser, 1000))
-      .then((browser) =>
-        browser.saveScreenshot("./screenshot-after-username.png")
-      )
-
-      .then((browser) =>
-        browser.page
-          .type('input[name="password"]', this.options.password, {
-            delay: 50,
-          })
-          .then(() => browser)
-      )
-      .then((browser) => sleep(browser, 1000))
-      .then((browser) =>
-        browser.saveScreenshot("./screenshot-after-password.png")
-      )
-
-      .then((browser) => this.clickLogin(browser))
-      .then((browser) => sleep(browser, 5000))
-      .then((browser) =>
-        browser.saveScreenshot("./screenshot-after-login.png")
-      );
-  }
-
-  private clickAllowCookies(instagramBrowser: InstagramBrowser) {
-    return this.click(instagramBrowser, '//button[contains(text(), "Accept")]')
-      .then((browser) =>
-        this.click(
-          browser,
-          '//button[contains(text(), "Only allow essential cookies")]'
-        )
-      )
-      .then((browser) =>
-        this.click(
-          browser,
-          '//button[contains(text(), "Allow essential and optional cookies")]'
-        )
-      );
-  }
-
-  private click(instagramBrowser: InstagramBrowser, query: string) {
-    return instagramBrowser
-      .click(query)
-      .then((browser) =>
-        browser
-          ? browser
-          : (() => {
-              logger.warn(`Element ${query} not found`);
-              return InstagramBrowser.getInstance();
-            })()
-      )
-      .then((browser) => sleep(browser, 1000));
-  }
-
-  private clickLogin(instagramBrowser: InstagramBrowser) {
-    return this.click(instagramBrowser, "//button[.//text() = 'Log In']").then(
-      (browser) => this.click(browser, "//button[.//text() = 'Log in']")
-    );
-  }
-
-  public async logout() {}
 }

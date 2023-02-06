@@ -11,17 +11,8 @@ export class InstagramState {
 
   private static instance: InstagramState;
 
-  private _isLogged: boolean = false;
   private _currentPage: IPage | null = null;
   private constructor() {}
-
-  public get isLogged(): boolean {
-    return this._isLogged;
-  }
-
-  public set isLogged(value: boolean) {
-    this._isLogged = value;
-  }
 
   public async setCurrentPage<T extends IPage>(page: T): Promise<T> {
     return page

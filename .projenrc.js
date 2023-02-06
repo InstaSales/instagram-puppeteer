@@ -3,7 +3,9 @@ const { typescript } = require("projen");
 const project = new typescript.TypeScriptProject({
   name: "instagram-puppeteer",
   description: "Instagram API SDK for Node.js",
-  homepage: "https://github.com/InstaSales/instagram-puppeteer",
+  repository: "https://github.com/InstaSales/instagram-puppeteer.git",
+  homepage: "https://instasales.github.io/instagram-puppeteer/",
+  keywords: ["instagram", "api", "sdk", "puppeteer"],
 
   docgen: true,
   prettier: true,
@@ -44,6 +46,6 @@ const project = new typescript.TypeScriptProject({
   },
 });
 
-project.npmignore.exclude("/docs/");
+project.npmignore.exclude("/docs/", "cookies.json");
 
 project.synth();

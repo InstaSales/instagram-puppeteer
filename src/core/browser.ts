@@ -83,16 +83,6 @@ export class InstagramBrowser {
       .then((clicked) => (clicked ? this : null));
   }
 
-  public clickButtonContains(text: string): Promise<InstagramBrowser> {
-    return this.page
-      .click(`//button[contains(text(), "${text}")]`)
-      .then(() => this);
-  }
-
-  public clickButtonExact(text: string): Promise<InstagramBrowser> {
-    return this.page.click(`//button[.//text() = '${text}']`).then(() => this);
-  }
-
   public saveScreenshot(path: string): Promise<InstagramBrowser> {
     return this.page
       .screenshot()

@@ -22,3 +22,4 @@ dist
 tsconfig.tsbuildinfo
 /.eslintrc.json
 /docs/
+cookies.json
