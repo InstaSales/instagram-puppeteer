@@ -10,12 +10,7 @@ const project = new typescript.TypeScriptProject({
   docgen: true,
   prettier: true,
 
-  deps: [
-    "tslog",
-    "puppeteer-core@19.6.0",
-    "@sparticuz/chromium@110.0",
-    "user-agents",
-  ],
+  deps: ["tslog", "puppeteer-core", "user-agents", "@sparticuz/chromium"],
   devDeps: ["@types/user-agents"],
 
   defaultReleaseBranch: "main",
@@ -31,7 +26,7 @@ const project = new typescript.TypeScriptProject({
   },
   jestOptions: {
     jestConfig: {
-      testTimeout: 60000,
+      testTimeout: 120000,
       coverageProvider: "v8",
     },
   },
@@ -47,5 +42,6 @@ const project = new typescript.TypeScriptProject({
 });
 
 project.npmignore.exclude("/docs/", "cookies.json");
+project.gitignore.exclude("cookies.json");
 
 project.synth();

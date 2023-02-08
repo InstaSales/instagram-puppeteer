@@ -51,3 +51,4 @@ junit.xml
 /lib
 /dist/
 !/.eslintrc.json
+cookies.json

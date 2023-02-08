@@ -89,12 +89,10 @@
     },
     {
       "name": "@sparticuz/chromium",
-      "version": "110.0",
       "type": "runtime"
     },
     {
       "name": "puppeteer-core",
-      "version": "19.6.0",
       "type": "runtime"
     },
     {

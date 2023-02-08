@@ -765,7 +765,7 @@
   dependencies:
     "@sinonjs/commons" "^2.0.0"
 
-"@sparticuz/chromium@110.0":
+"@sparticuz/chromium@^110.0.0":
   version "110.0.0"
   resolved "https://registry.yarnpkg.com/@sparticuz/chromium/-/chromium-110.0.0.tgz#967375a3a242bd989ca5bf95f9cc8cd4269d637a"
   integrity sha512-b4lVUnG+waiMzm/O5wO1RCnr/DV9Xn1Om4NujHsM0oy12KdQ7gfB/JyRDCYhlASrpyLYMA6F01t8/r+rLqIjkg==

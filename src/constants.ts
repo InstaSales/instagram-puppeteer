@@ -11,3 +11,8 @@ export const BrowserUserAgent = new UserAgent([
     viewportHeight: chromium.defaultViewport.height,
   },
 ]).toString();
+
+export const Language = {
+  short: "en",
+  long: "English",
+};
