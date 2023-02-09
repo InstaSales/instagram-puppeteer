@@ -61,9 +61,9 @@ export class CookiesService {
         })
         .then((response) => response.json())
         .then((data: SharedDataResponse) =>
-          data.status === "ok"
-            ? Promise.resolve()
-            : Promise.reject("Cannot allow cookies: " + data.message)
+          data.status === "fail"
+            ? Promise.reject("Cannot allow cookies: " + data.message)
+            : Promise.resolve()
         ),
       ...cookiesButtons.map((button) => button.click()),
     ]).then(() => new Promise((resolve) => setTimeout(resolve, 1000)));

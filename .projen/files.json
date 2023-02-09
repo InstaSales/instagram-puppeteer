@@ -1,5 +1,6 @@
 {
   "files": [
+    ".editorconfig",
     ".eslintrc.json",
     ".gitattributes",
     ".github/pull_request_template.md",
@@ -11,6 +12,7 @@
     ".gitignore",
     ".mergify.yml",
     ".npmignore",
+    ".nvmrc",
     ".prettierignore",
     ".prettierrc.json",
     ".projen/deps.json",

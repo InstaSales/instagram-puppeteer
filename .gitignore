@@ -52,3 +52,5 @@ junit.xml
 /dist/
 !/.eslintrc.json
 cookies.json
+!/.nvmrc
+!/.editorconfig

@@ -15,7 +15,5 @@ test("Check the page title of example.com", async () => {
   const pageTitle = await page.title();
   await browser.close();
 
-  console.log(pageTitle);
-
   expect(pageTitle).toBe("Example Domain");
 });

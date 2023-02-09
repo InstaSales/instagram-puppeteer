@@ -1,4 +1,4 @@
-const { typescript } = require("projen");
+const { typescript, TextFile } = require("projen");
 
 const project = new typescript.TypeScriptProject({
   name: "instagram-puppeteer",
@@ -44,5 +44,23 @@ const project = new typescript.TypeScriptProject({
 
 project.npmignore.exclude("/docs/", "cookies.json");
 project.gitignore.exclude("cookies.json");
+
+new TextFile(project, ".nvmrc", {
+  marker: false,
+  lines: ["v18"],
+});
+
+new TextFile(project, ".editorconfig", {
+  marker: false,
+  lines: `root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_size = 2
+tab_width = 2
+`.split("\n"),
+});
 
 project.synth();
