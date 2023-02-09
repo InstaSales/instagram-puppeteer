@@ -32,6 +32,7 @@ const project = new typescript.TypeScriptProject({
   },
 
   codeCov: true,
+  codeCovTokenSecret: "CODECOV_TOKEN",
   workflowNodeVersion: "18",
 
   autoMerge: true,
