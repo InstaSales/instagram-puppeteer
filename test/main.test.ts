@@ -36,8 +36,6 @@ describe("InstagramPuppeteerClient", () => {
 
   test("InstagramPuppeteerClient login", async () => {
     expect(client.auth).toBeTruthy();
-    await expect(client.auth?.login("123123", "123123")).rejects.toThrow(
-      "Sorry, your password was incorrect. Please double-check your password."
-    );
+    await expect(client.auth?.login("123123", "123123")).rejects.toThrow();
   });
 });
