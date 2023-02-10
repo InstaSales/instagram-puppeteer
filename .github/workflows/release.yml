@@ -24,6 +24,10 @@ jobs:
         run: |-
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+      - name: Set environment Instagram username
+        run: echo "IG_USERNAME=${{ secrets.IG_USERNAME }}" >> $GITHUB_ENV
+      - name: Set environment Instagram password
+        run: echo "IG_PASSWORD=${{ secrets.IG_PASSWORD }}" >> $GITHUB_ENV
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:

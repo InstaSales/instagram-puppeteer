@@ -30,6 +30,16 @@ const project = new typescript.TypeScriptProject({
       coverageProvider: "v8",
     },
   },
+  workflowBootstrapSteps: [
+    {
+      name: "Set environment Instagram username",
+      run: 'echo "IG_USERNAME=${{ secrets.IG_USERNAME }}" >> $GITHUB_ENV',
+    },
+    {
+      name: "Set environment Instagram password",
+      run: 'echo "IG_PASSWORD=${{ secrets.IG_PASSWORD }}" >> $GITHUB_ENV',
+    },
+  ],
 
   codeCov: true,
   codeCovTokenSecret: "CODECOV_TOKEN",
