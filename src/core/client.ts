@@ -1,7 +1,7 @@
 import { readFile, stat, writeFile } from "fs/promises";
 import { Browser, Page, Protocol } from "puppeteer-core";
 import { Logger } from "tslog";
-import { InstagramBaseURL, Language } from "../constants";
+import { BrowserUserAgent, InstagramBaseURL, Language } from "../constants";
 import {
   AuthService,
   LanguageService,
@@ -23,7 +23,7 @@ export class InstagramPuppeteerClient {
   public auth?: AuthService;
   public user?: UserService;
 
-  constructor(options: InstagramPuppeteerClientOptions) {
+  constructor(private readonly options: InstagramPuppeteerClientOptions) {
     this.browser = options.browser;
   }
 
@@ -41,6 +41,11 @@ export class InstagramPuppeteerClient {
         return this.page?.setCookie(...cookies);
       })
       .catch(() => logger.warn("No cookies.json file found"));
+
+    await this.page.setUserAgent(
+      this.options.userAgent?.toString() ?? BrowserUserAgent
+    );
+    await this.page.setExtraHTTPHeaders({ "Accept-Language": Language.short });
 
     await this.page.goto(InstagramBaseURL, {
       waitUntil: "load",
