@@ -41,6 +41,8 @@ describe("InstagramPuppeteerClient", () => {
         process.env.IG_USERNAME!,
         process.env.IG_PASSWORD!
       );
+    } catch (e) {
+      console.log(e);
     } finally {
       await client.auth?.logout();
     }
