@@ -1,7 +1,7 @@
 import { ElementHandle, Page } from "puppeteer-core";
 import { Logger } from "tslog";
 import { InstagramBaseURL } from "../constants";
-import { click, goto } from "../core";
+import { click, goto, sleep } from "../core";
 
 const logger: Logger<string> = new Logger({ name: "AuthService" });
 
@@ -48,7 +48,9 @@ export class AuthService {
 
     await Promise.all([
       Promise.race([
-        this.page.waitForNavigation({ timeout: 7000 }),
+        this.page
+          .waitForNavigation({ waitUntil: "load" })
+          .then(() => sleep(null, 2000)),
         this.page
           .waitForSelector("#slfErrorAlert")
           .then((element) =>
@@ -64,13 +66,15 @@ export class AuthService {
     if (!(await this.checkLogin()))
       throw new Error("Login error: couldn't login");
 
+    await click(this.page, '//span[contains(text(), "Allow all cookies")]');
+
     const buttons = [
       ...(await this.page.$x('//button[contains(text(), "Save Info")]')),
       ...(await this.page.$x('//button[contains(text(), "Save info")]')),
     ];
     if (buttons.length) {
       await Promise.all([
-        this.page.waitForNavigation({ timeout: 7000 }),
+        this.page.waitForNavigation({ timeout: 7000, waitUntil: "load" }),
         await Promise.allSettled(
           buttons.map((button) => (button as ElementHandle).click())
         ),
@@ -81,4 +85,6 @@ export class AuthService {
 
     logger.info("Logged in");
   }
+
+  async logout(): Promise<void> {}
 }

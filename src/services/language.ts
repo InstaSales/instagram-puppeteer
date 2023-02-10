@@ -29,7 +29,7 @@ export class LanguageService {
     logger.info(`Current language is ${currentLang}, changing to ${lang}...`);
 
     await Promise.all([
-      this.page.waitForNavigation(),
+      this.page.waitForNavigation({ waitUntil: "load" }),
       languageSelector.select(lang),
     ]);
   }

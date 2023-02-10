@@ -36,6 +36,13 @@ describe("InstagramPuppeteerClient", () => {
 
   test("InstagramPuppeteerClient login", async () => {
     expect(client.auth).toBeTruthy();
-    await expect(client.auth?.login("123123", "123123")).rejects.toThrow();
+    try {
+      await client.auth?.login(
+        process.env.IG_USERNAME!,
+        process.env.IG_PASSWORD!
+      );
+    } finally {
+      await client.auth?.logout();
+    }
   });
 });

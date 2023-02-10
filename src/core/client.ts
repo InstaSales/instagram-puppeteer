@@ -1,7 +1,7 @@
 import { readFile, stat, writeFile } from "fs/promises";
-import { Browser, Page } from "puppeteer-core";
+import { Browser, Page, Protocol } from "puppeteer-core";
 import { Logger } from "tslog";
-import { BrowserUserAgent, InstagramBaseURL, Language } from "../constants";
+import { InstagramBaseURL, Language } from "../constants";
 import {
   AuthService,
   LanguageService,
@@ -23,30 +23,28 @@ export class InstagramPuppeteerClient {
   public auth?: AuthService;
   public user?: UserService;
 
-  constructor(private readonly options: InstagramPuppeteerClientOptions) {
+  constructor(options: InstagramPuppeteerClientOptions) {
     this.browser = options.browser;
-    this.options = options;
   }
 
   async init() {
     logger.info("Initializing Instagram Puppeteer Client");
     this.page = await this.browser.newPage();
-    await this.page.setUserAgent(
-      this.options.userAgent?.toString() ?? BrowserUserAgent
-    );
-    await this.page.setExtraHTTPHeaders({ "Accept-Language": Language.short });
-    await this.page.goto(InstagramBaseURL, {
-      waitUntil: ["load", "domcontentloaded", "networkidle0"],
-    });
 
     await stat("cookies.json")
       .then(() => logger.info("cookies.json file found"))
       .then(() => readFile("cookies.json"))
       .then((data) => {
-        const cookies = JSON.parse(data.toString());
+        const cookies = JSON.parse(data.toString()).filter(
+          (cookie: Protocol.Network.CookieParam) => cookie.name !== "csrftoken"
+        );
         return this.page?.setCookie(...cookies);
       })
       .catch(() => logger.warn("No cookies.json file found"));
+
+    await this.page.goto(InstagramBaseURL, {
+      waitUntil: "load",
+    });
 
     const languageService = new LanguageService({ page: this.page });
     logger.info(`Changing language to ${Language.long}...`);
@@ -61,9 +59,7 @@ export class InstagramPuppeteerClient {
 
   async close() {
     logger.info("Closing Instagram Puppeteer Client");
-    await this.page
-      ?.cookies()
-      .then((cookies) => writeFile("cookies.json", JSON.stringify(cookies)));
-    await this.page?.close();
+    const cookies = await this.page?.cookies();
+    await writeFile("cookies.json", JSON.stringify(cookies, null, 2));
   }
 }
