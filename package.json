@@ -33,7 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "eslint": "^8",
-    "eslint-config-prettier": "^8.7.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.27.5",
@@ -41,8 +41,8 @@
     "jest": "^29.5.0",
     "jest-junit": "^13",
     "npm-check-updates": "^16",
-    "prettier": "^2.8.4",
-    "projen": "^0.68.14",
+    "prettier": "^2.8.5",
+    "projen": "^0.68.16",
     "standard-version": "^9",
     "ts-jest": "^29.0.5",
     "typedoc": "^0.23.28",
@@ -52,7 +52,7 @@
     "@sparticuz/chromium": "^110.0.1",
     "puppeteer-core": "19.7.5",
     "tslog": "*",
-    "user-agents": "^1.0.1323"
+    "user-agents": "^1.0.1324"
   },
   "keywords": [
     "api",
