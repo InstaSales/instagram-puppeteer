@@ -42,7 +42,7 @@
     "jest-junit": "^15",
     "npm-check-updates": "^16",
     "prettier": "^2.8.7",
-    "projen": "^0.70.10",
+    "projen": "^0.70.12",
     "standard-version": "^9",
     "ts-jest": "^29.1.0",
     "typedoc": "^0.23.28",
@@ -52,7 +52,7 @@
     "@sparticuz/chromium": "^110.0.1",
     "puppeteer-core": "19.8.3",
     "tslog": "*",
-    "user-agents": "^1.0.1338"
+    "user-agents": "^1.0.1339"
   },
   "keywords": [
     "api",
