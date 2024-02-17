@@ -31,7 +31,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -44,7 +43,6 @@ junit.xml
 !/.github/pull_request_template.md
 !/.prettierignore
 !/.prettierrc.json
-!/.npmrc
 !/test/
 !/tsconfig.json
 !/tsconfig.dev.json
@@ -55,3 +53,4 @@ junit.xml
 cookies.json
 !/.nvmrc
 !/.editorconfig
+!/.projenrc.js
